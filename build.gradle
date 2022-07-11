@@ -1,0 +1,70 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.7'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'org.flywaydb.flyway' version '6.4.3'
+	id 'java'
+	id 'com.avast.gradle.docker-compose' version '0.16.4'
+}
+
+apply plugin: 'docker-compose'
+
+group = 'com.codeseek'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+	implementation 'io.springfox:springfox-bean-validators:3.0.0'
+	implementation 'org.flywaydb:flyway-core:8.5.13'
+	implementation 'org.apache.commons:commons-lang3:3.12.0'
+	implementation 'org.hibernate.orm:hibernate-jpamodelgen:6.1.1.Final'
+	implementation 'org.postgresql:postgresql:42.4.0'
+	implementation 'com.avast.gradle:gradle-docker-compose-plugin:0.16.4'
+	implementation group: 'org.postgresql', name: 'postgresql'
+
+	testImplementation 'org.testcontainers:postgresql:1.17.2'
+	testImplementation 'org.testcontainers:testcontainers:1.17.2'
+	testImplementation 'org.testcontainers:junit-jupiter:1.17.2'
+	testImplementation 'org.hamcrest:hamcrest:2.2'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'org.postgresql:postgresql'
+	annotationProcessor 'org.projectlombok:lombok'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+tasks.named("bootJar") {
+	archiveClassifier = 'boot'
+	manifest {
+		attributes 'Start-Class': 'com.codeseek.FootballManagerApplication'
+	}
+	launchScript()
+}
+
+task execute(type: Exec) {
+	commandLine 'bash', '-c', 'docker-compose up'
+}
+
+build.finalizedBy(execute)

@@ -1,0 +1,82 @@
+INSERT INTO teams VALUES (1, 'Arsenal London', 'GB', 1000000, 2.0, true);
+INSERT INTO teams VALUES (2, 'Newcastle United', 'GB', 2000000, 2.5, true);
+INSERT INTO teams VALUES (3, 'Aston Villa', 'GB', 500000, 1.5, true);
+INSERT INTO teams VALUES (4, 'Nottingham Forest', 'GB', 3000000, 5.5, true);
+INSERT INTO teams VALUES (5, 'Athletic Bilbao', 'ES', 4000000, 9.0, true);
+INSERT INTO teams VALUES (6, 'AC Milan', 'IT', 400000, 1.0, true);
+INSERT INTO teams VALUES (7, 'Atalanta', 'IT', 5000000, 2.5, true);
+INSERT INTO teams VALUES (8, 'Bayern Munich', 'GE', 1000000, 6.0, true);
+SELECT setval('teams_id_seq', COALESCE((SELECT id+ 1 FROM teams ORDER BY id DESC limit 1), 1), false);
+INSERT INTO players  VALUES (1, 'Lionel Messi', '1994-07-08', '2011-07-09', 1, 'AR', 'FORWARD', true);
+INSERT INTO players  VALUES (2, 'Cristiano Ronaldo', '2000-09-30', '2018-05-09', 1, 'UA', 'DEFENDER', true);
+INSERT INTO players  VALUES (3, 'Xavi', '2001-07-08', '2019-06-09', 1, 'GB', 'MIDFIELDER', true);
+INSERT INTO players  VALUES (4, 'Andres Iniesta', '2005-01-08', '2010-07-09', 1, 'ES', 'GOALKEEPER', true);
+INSERT INTO players  VALUES (5, 'Zlatan Ibrahimovic', '1998-07-03', '2015-07-09', 2, 'ES', 'GOALKEEPER', true);
+INSERT INTO players  VALUES (6, 'Radamel Falcao', '1999-07-08', '2018-02-25', 2, 'UA', 'DEFENDER', true);
+INSERT INTO players  VALUES (7, 'Robin van Persie', '2002-07-27', '2020-07-09', 2, 'GB', 'MIDFIELDER', true);
+INSERT INTO players  VALUES (8, 'Andrea Pirlo', '2005-07-08', '2022-07-01', 2, 'SE', 'FORWARD', true);
+INSERT INTO players  VALUES (9, 'Yaya Toure', '1999-01-02', '2018-03-04', 3, 'ES', 'GOALKEEPER', true);
+INSERT INTO players  VALUES (10, 'Edinson Cavani', '2002-02-08', '2020-07-09', 3, 'UA', 'DEFENDER', true);
+INSERT INTO players  VALUES (11, 'Sergio Aguero', '2003-04-08', '2020-04-10', 3, 'ES', 'MIDFIELDER', true);
+INSERT INTO players  VALUES (12, 'Iker Casillas', '2002-07-08', '2020-07-09', 3, 'AR', 'FORWARD', true);
+INSERT INTO players  VALUES (13, 'Neymar', '2000-04-08', '2019-07-09', 4, 'GB', 'GOALKEEPER', true);
+INSERT INTO players  VALUES (14, 'Sergio Busquets', '2001-03-05', '2021-06-09', 4, 'GB', 'DEFENDER', true);
+INSERT INTO players  VALUES (15, 'Xabi Alonso', '1999-10-11', '2020-11-09', 4, 'SE', 'MIDFIELDER', true);
+INSERT INTO players  VALUES (16, 'Thiago Silva', '2000-09-10', '2021-09-12', 4, 'AR', 'FORWARD', true);
+INSERT INTO players  VALUES (17, 'Mesut Ozil', '2003-09-10', '2021-08-11', 5, 'AR', 'GOALKEEPER', true);
+INSERT INTO players  VALUES (18, 'David Silva', '2002-01-08', '2021-07-09', 5, 'AR', 'DEFENDER', true);
+INSERT INTO players  VALUES (19, 'Bastian Schweinsteiger', '1998-09-03', '2020-06-10', 5, 'AR', 'MIDFIELDER', true);
+INSERT INTO players  VALUES (20, 'Gianluigi Buffon', '1999-01-08', '2022-07-01', 5, 'AR', 'FORWARD', true);
+INSERT INTO players  VALUES (21, 'Luis Suarez', '1997-02-08', '2020-06-09', 6, 'SE', 'GOALKEEPER', true);
+INSERT INTO players  VALUES (22, 'Sergio Ramos', '1996-02-05', '2020-01-09', 6, 'CH', 'DEFENDER', true);
+INSERT INTO players  VALUES (23, 'Vincent Kompany', '1999-02-08', '2018-04-09', 6, 'AR', 'MIDFIELDER', true);
+INSERT INTO players  VALUES (24, 'Gerard Pique', '1997-07-08', '2021-07-09', 6, 'US', 'FORWARD', true);
+INSERT INTO players  VALUES (25, 'Philipp Lahm', '1999-04-01', '2020-07-09', 7, 'CH', 'GOALKEEPER', true);
+INSERT INTO players  VALUES (26, 'Willian', '2004-07-05', '2021-04-05', 7, 'CH', 'DEFENDER', true);
+INSERT INTO players  VALUES (27, 'Marco Reus', '1999-01-01', '2020-01-01', 7, 'AR', 'MIDFIELDER', true);
+INSERT INTO players  VALUES (28, 'Franck Ribery', '2000-01-01', '2020-01-02', 7, 'SE', 'FORWARD', true);
+INSERT INTO players  VALUES (29, 'Manuel Neuer', '2002-04-30', '2020-09-20', 8, 'US', 'GOALKEEPER', true);
+INSERT INTO players  VALUES (30, 'Ashley Cole', '2003-04-09', '2021-06-01', 8, 'SE', 'DEFENDER', true);
+INSERT INTO players  VALUES (31, 'Wayne Rooney', '2002-01-09', '2020-06-30', 8, 'US', 'MIDFIELDER', true);
+INSERT INTO players  VALUES (32, 'Juan Mata', '2005-08-21', '2022-05-22', 8, 'US', 'FORWARD', true);
+SELECT setval('players_id_seq', COALESCE((SELECT id+ 1 FROM players ORDER BY id DESC limit 1), 1), false);
+INSERT INTO transfers  VALUES (1, 1, 2, 1, 20000, '2022-01-01T22:12:15.386961');
+INSERT INTO transfers  VALUES (2, 2, 5, 1, 10000, '2021-02-04T22:37:15.386961');
+INSERT INTO transfers  VALUES (3, 3, 4, 1, 100000, '2020-03-05T12:37:15.386961');
+INSERT INTO transfers  VALUES (4, 4, 7, 1, 30000, '2022-06-06T11:32:15.386961');
+INSERT INTO transfers  VALUES (5, 5, null, 2, 0, '2022-01-08T20:39:15.386961');
+INSERT INTO transfers  VALUES (6, 6, null, 2, 0, '2021-06-07T21:35:15.386961');
+INSERT INTO transfers  VALUES (7, 7, 6, 2, 60000, '2022-01-08T22:37:15.386961');
+INSERT INTO transfers  VALUES (8, 8, 7, 2, 3000, '2021-02-01T22:37:15.386961');
+INSERT INTO transfers  VALUES (9, 9, 2, 3, 70000, '2022-06-02T13:37:15.386961');
+INSERT INTO transfers  VALUES (10, 10, 1, 3, 80000, '2021-02-03T14:37:15.386961');
+INSERT INTO transfers  VALUES (11, 11, 2, 3, 55000, '2022-06-06T16:36:15.386961');
+INSERT INTO transfers  VALUES (12, 12, 1, 3, 65000, '2022-03-08T22:31:15.386961');
+INSERT INTO transfers  VALUES (13, 13, null, 4, 0, '2022-06-08T22:37:15.386961');
+INSERT INTO transfers  VALUES (14, 14, 7, 4, 100000, '2022-06-08T22:37:15.386961');
+INSERT INTO transfers  VALUES (15, 15, 5, 4, 200000, '2021-05-01T22:37:15.386961');
+INSERT INTO transfers  VALUES (16, 16, null, 4, 0, '2022-06-08T22:39:15.386961');
+INSERT INTO transfers  VALUES (17, 17, 6, 5, 70000, '2022-04-05T22:22:15.386961');
+INSERT INTO transfers  VALUES (18, 18, 1, 5, 90000, '2021-06-07T22:21:15.386961');
+INSERT INTO transfers  VALUES (19, 19, null, 5, 0, '2022-01-08T22:37:15.386961');
+INSERT INTO transfers  VALUES (20, 20, null, 5, 0, '2022-06-01T22:28:15.386961');
+INSERT INTO transfers  VALUES (21, 21, 7, 6, 80000, '2022-01-02T22:37:15.386961');
+INSERT INTO transfers  VALUES (22, 22, null, 6, 0, '2022-01-08T22:37:15.386961');
+INSERT INTO transfers  VALUES (23, 23, 2, 6, 56000, '2020-06-08T22:37:15.386961');
+INSERT INTO transfers  VALUES (24, 24, 8, 6, 58000, '2022-05-04T22:29:15.386961');
+INSERT INTO transfers  VALUES (25, 25, 1, 7, 54000, '2022-06-04T22:37:15.386961');
+INSERT INTO transfers  VALUES (26, 26, 6, 7, 59000, '2021-04-08T22:34:15.386961');
+INSERT INTO transfers  VALUES (27, 27, null, 7, 0, '2022-06-06T22:37:15.386961');
+INSERT INTO transfers  VALUES (28, 28, 4, 7, 210000, '2022-04-07T22:31:15.386961');
+INSERT INTO transfers  VALUES (29, 29, 1, 8, 21000, '2022-06-08T22:37:15.386961');
+INSERT INTO transfers  VALUES (30, 30, 7, 8, 22000, '2022-05-01T22:37:15.386961');
+INSERT INTO transfers  VALUES (31, 31, 5, 8, 61000, '2020-05-08T22:37:15.386961');
+INSERT INTO transfers  VALUES (32, 32, null, 8, 0, '2022-06-08T22:46:15.386961');
+SELECT setval('transfers_id_seq', COALESCE((SELECT id+ 1 FROM transfers ORDER BY id DESC limit 1), 1), false);
+
+
+
+
+
+
+

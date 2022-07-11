@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:14.3
+    ports:
+      - 5442:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 1525
+      POSTGRES_DB: ftmanager
+    networks: [ football-manager-network ]
+  ftmanager:
+    image: openjdk:11
+    volumes: [ "./build/libs:/tmp/ftmanager" ]
+    ports: [ "9090:9090" ]
+    networks: [ football-manager-network ]
+    command: bash -c "java -jar /tmp/ftmanager/*.jar"
+    healthcheck:
+      disable: true
+
+networks:
+  football-manager-network:
+    driver: bridge
