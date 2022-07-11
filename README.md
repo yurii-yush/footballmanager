@@ -7,4 +7,5 @@ Otherwise, use bash script titled "start.sh" (for Mac/Linux only)
 
 Postman collection is in file (root directory): FootballManager.postman_collection.json
 
-Swagger: path: /public/swagger.json
+Swagger UI path: http://localhost:9090/swagger-ui/index.html
+Swagger json: path: /public/swagger.json
