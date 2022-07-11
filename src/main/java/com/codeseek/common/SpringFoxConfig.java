@@ -1,4 +1,4 @@
-package com.codeseek;
+package com.codeseek.common;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +18,7 @@ public class SpringFoxConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.bookstore.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.codeseek.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

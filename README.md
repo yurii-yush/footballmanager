@@ -5,4 +5,5 @@ For start project download source code and then use command:
 
 Otherwise, use bash script titled "start.sh" (for Mac/Linux only) 
 
-Swagger: path: /public/swagger.json
+Swagger UI path: http://localhost:9090/swagger-ui/index.html
+Swagger JSON path: Swagger: /public/swagger.json
