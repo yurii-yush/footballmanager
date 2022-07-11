@@ -1,0 +1,830 @@
+{
+	"info": {
+		"_postman_id": "8fc5fc39-d09f-4900-98b3-657168a9cf4a",
+		"name": "FootballManager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20539594"
+	},
+	"item": [
+		{
+			"name": "Teams",
+			"item": [
+				{
+					"name": "Search Teams",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"id\": 1,\n   \"name\": \"Arsenal\",\n   \"balanceFrom\" : 1000,\n   \"balanceTo\" : 2000000, \n   \"countryCode\": \"GB\",\n   \"isActive\": true,\n   \"page\" : 0,\n   \"limit\" : 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/teams/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"teams",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Team by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"page\" : 0,\n    \"limit\" : 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/teams/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"teams",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Teams by Balance",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"balanceFrom\" : 10000,\n   \"balanceTo\" : 2000000, \n   \"page\" : 0,\n    \"limit\" : 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/teams/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"teams",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Team by Country",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"countryCode\": \"GB\",\n   \"isActive\": true,\n    \"page\" : 0,\n     \"limit\" : 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/teams/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"teams",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save new Team",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Karpaty Lviv\",\n    \"countryCode\" : \"UA\",\n    \"balance\" : 600000,\n    \"commission\" : 5.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/teams/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"teams",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Try to Save not valid Team",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Karpaty Lviv\",\n    \"countryCode\" : \"UK\",\n    \"balance\" : 50000,\n    \"commission\" : 5.0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/teams/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"teams",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Team",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Karpaty Lvivski\",\n    \"countryCode\" : \"UA\",\n    \"balance\" : 500000,\n    \"commission\" : 1.5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/teams/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"teams",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Team",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/teams/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"teams",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Players",
+			"item": [
+				{
+					"name": "Search Players",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"Lionel Messi\",\n    \"team\" : {\n          \"id\": 1\n    },\n    \"birthDateFrom\": \"1991-07-08\",\n    \"birthDateTo\": \"1999-07-08\",\n    \"startCareerDateFrom\": \"2010-07-09\",\n    \"startCareerDateTo\": \"2015-07-09\",\n    \"position\": \"FORWARD\",\n    \"countryCode\": \"AR\",\n    \"isActive\": true,  \n    \"page\" : 0,\n     \"limit\" : 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/players/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"players",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Player by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 3,\n    \"page\" : 0,\n    \"limit\" : 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/players/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"players",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Player by countryCode",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"countryCode\": \"AR\",\n    \"page\" : 0,\n     \"limit\" : 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/players/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"players",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Player by birthDate",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"birthDateFrom\": \"1994-07-08\",\n    \"birthDateTo\": \"1999-07-08\",\n    \"page\" : 0,\n     \"limit\" : 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/players/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"players",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Player by Start Career",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"startCareerDateFrom\": \"2011-07-09\",\n    \"startCareerDateTo\": \"2019-07-09\",\n    \"page\" : 0,\n     \"limit\" : 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/players/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"players",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Player by Position",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"position\": \"FORWARD\", \n   \"page\" : 0,\n   \"limit\" : 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/players/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"players",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save new Player",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Yurii Yushchyshyn\",\n    \"countryCode\" : \"UA\",\n    \"birthDate\" : \"2006-03-07\",\n    \"startCareerDate\" : \"2022-03-08\",\n    \"position\" : \"DEFENDER\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/players/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"players",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Try to Save not Valid Player",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Yurii Yushchyshyn\",\n    \"countryCode\" : \"UK\",\n    \"birthDate\" : \"2009-03-07\",\n    \"startCareerDate\" : \"2022-03-08\",\n    \"position\" : \"DEFENDER\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/players/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"players",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Player",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Yurchyk Yushchyshyn\",\n    \"countryCode\" : \"PL\",\n    \"birthDate\" : \"2004-03-07\",\n    \"startCareerDate\" : \"2022-02-08\",\n    \"position\" : \"FORWARD\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/players/33",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"players",
+								"33"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Player",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/players/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"players",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transfers",
+			"item": [
+				{
+					"name": "Save new Transfer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"player\" : {\n        \"id\" : 1\n    },\n    \"toTeam\" : {\n        \"id\" : 6\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/transfers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"transfers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Transfers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\" : 33,\n    \"player\" : {\n        \"id\" : 1\n    },\n    \"toTeam\" : {\n        \"id\" : 1\n    },\n    \"fromTeam\" : {\n       \"id\" : 2\n    },\n    \"priceFrom\" : 20000,\n     \"priceTo\" : 2000000,\n     \"dateFrom\" : \"2021-01-01T22:12:15.386961\",\n     \"dateTo\" : \"2022-05-01T22:12:15.386961\",\n     \"page\" : 0,\n     \"limit\" : 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/transfers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"transfers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Transfers by Price",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"priceFrom\" : 20000,\n     \"priceTo\" : 200000,\n     \"page\" : 0,\n     \"limit\" : 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/transfers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"transfers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Transfers by Date",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"dateFrom\" : \"2021-01-01T22:12:15.386961\",\n     \"dateTo\" : \"2022-05-01T22:12:15.386961\",\n     \"page\" : 0,\n     \"limit\" : 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/transfers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"transfers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Transfers by Player",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"player\" : {\n        \"id\" : 1\n    },\n     \"page\" : 0,\n     \"limit\" : 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/transfers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"transfers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Transfers by FromTeam",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fromTeam\" : {\n       \"id\" : 7\n    },\n     \"page\" : 0,\n     \"limit\" : 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/transfers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"transfers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Transfers by ToTeam",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"toTeam\" : {\n        \"id\" : 7\n    },\n     \"page\" : 0,\n     \"limit\" : 20\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/transfers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"transfers",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
