@@ -17,7 +17,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,26 +38,22 @@ public class PlayerIntegrationTests extends AbstractIT {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
-    public void givenValidPlayer_whenSavePlayer_thenReturnURI_andStatus201() throws Exception {
+   @Test
+    public void givenValidPlayer_whenSavePlayer_thenReturnPlayer_andStatus201() throws Exception {
         //given
         long maxId = getMaxId() + 1;
 
         Player expectedPlayer = new Player(maxId, "Radamel Falcao", LocalDate.parse("1994-07-08"), LocalDate.parse("2011-07-09"), null, "AR", Position.FORWARD, true);
-
-        URI location = URI.create(String.format(Messages.CREATED_PLAYER_URI, maxId));
-
         //when
         mockMvc.perform(
                         post(Messages.PLAYER_CONTROLLER_URI)
                                 .content(objectMapper.writeValueAsString(expectedPlayer.toDTO()))
                                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
-                .andExpect(content().json(objectMapper.writeValueAsString(location)));
+                .andExpect(content().json(objectMapper.writeValueAsString(expectedPlayer.toDTO())));
 
         //then
         Player actualPlayer = playerRepository.findById(expectedPlayer.getId()).get();
-        actualPlayer.setTeam(null);
         assertThat(expectedPlayer, equalTo(actualPlayer));
     }
 

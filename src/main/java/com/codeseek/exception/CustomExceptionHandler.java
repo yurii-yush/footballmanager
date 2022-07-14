@@ -84,7 +84,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleAllOtherExceptions(Exception ex, WebRequest request) {
         ErrorAPI error = new ErrorAPI(Messages.OTHER_EXCEPTION, ex.getLocalizedMessage());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(error);
     }
 }

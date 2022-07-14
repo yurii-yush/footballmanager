@@ -22,7 +22,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import javax.validation.ConstraintViolationException;
-import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -55,7 +54,6 @@ public class PlayerControllerTests {
     public void givenValidPlayer_whenSavePlayer_thenReturnURI_andStatus201() throws Exception {
         //given
         Mockito.when(playerService.savePlayer(Mockito.any())).thenReturn(playerResponse);
-        URI location = URI.create(String.format(Messages.CREATED_PLAYER_URI, playerRequest.getId()));
 
         //when
         mockMvc.perform(
@@ -63,7 +61,7 @@ public class PlayerControllerTests {
                                 .content(objectMapper.writeValueAsString(playerRequest))
                                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
-                .andExpect(content().json(objectMapper.writeValueAsString(location)));
+                .andExpect(content().json(objectMapper.writeValueAsString(playerResponse)));
     }
 
     @Test

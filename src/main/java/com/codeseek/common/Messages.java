@@ -13,8 +13,8 @@ public interface Messages {
 
     String REQUIRED_MAX_TEAM_COMMISSION = "Team commission should be less or equal than 10.0%";
     String NOT_NULL_BIRTH_DATE = "Birth date required";
+    String NOT_NULL_POSITION= "Position on field required";
     String NOT_NULL_START_CAREER_DATE = "Start career date required";
-
 
     //Controllers URI
     String TEAM_CONTROLLER_URI = "/api/v1/teams";
@@ -23,6 +23,9 @@ public interface Messages {
 
     String PLAYER_CONTROLLER_URI = "/api/v1/players";
     String CREATED_PLAYER_URI = PLAYER_CONTROLLER_URI + ID_FOR_URI;
+    String NOT_NULL_BALANCE = "Add Balance for your team.";
+    String NOT_NULL_COMMISSION = "Add Commission for your team.";
+
     String TRANSFER_CONTROLLER_URI = "/api/v1/transfers";
     String CREATED_TRANSFER_URI = TRANSFER_CONTROLLER_URI +  ID_FOR_URI;
     String ID_PATH = "id";

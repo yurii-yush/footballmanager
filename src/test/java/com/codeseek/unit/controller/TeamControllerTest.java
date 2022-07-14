@@ -1,7 +1,6 @@
 package com.codeseek.unit.controller;
 
 import com.codeseek.common.Messages;
-import com.codeseek.common.Pagination;
 import com.codeseek.controller.TeamController;
 import com.codeseek.controller.dto.request.TeamRequestDTO;
 import com.codeseek.controller.dto.response.TeamResponseDTO;
@@ -16,13 +15,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import javax.validation.ConstraintViolationException;
 import java.math.BigDecimal;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -114,7 +111,6 @@ public class TeamControllerTest {
     public void givenValidTeam_whenSaveTeam_thenReturnURI_andStatus201() throws Exception {
         //given
         Mockito.when(teamService.saveTeam(Mockito.any())).thenReturn(responseTeam);
-        URI location = URI.create(String.format(Messages.CREATED_TEAM_URI, requestTeam.getId()));
 
         //when
         mockMvc.perform(
@@ -122,7 +118,7 @@ public class TeamControllerTest {
                                 .content(objectMapper.writeValueAsString(requestTeam))
                                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
-                .andExpect(content().json(objectMapper.writeValueAsString(location)));
+                .andExpect(content().json(objectMapper.writeValueAsString(responseTeam)));
     }
 
     @Test

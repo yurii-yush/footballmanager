@@ -5,7 +5,6 @@ import com.codeseek.common.Pagination;
 import com.codeseek.controller.dto.request.TeamRequestDTO;
 import com.codeseek.controller.dto.response.TeamResponseDTO;
 import com.codeseek.controller.request.TeamSearchRequest;
-import com.codeseek.entity.Player;
 import com.codeseek.entity.Team;
 import com.codeseek.exception.ResourceNotFoundException;
 import com.codeseek.exception.TeamValidationException;
@@ -21,15 +20,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityExistsException;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
 public class TeamServiceImpl implements TeamService, Pagination {
     @Autowired
     private TeamRepository teamRepository;
+
+    @Override
     @Transactional(readOnly = true)
     public Page<TeamResponseDTO> searchTeams(TeamSearchRequest searchRequest) {
         Specification<Team> query = TeamSpecifications.generateQuery(searchRequest);
@@ -40,6 +39,7 @@ public class TeamServiceImpl implements TeamService, Pagination {
     }
 
     @Override
+    @Transactional
     public TeamResponseDTO updateTeam(TeamRequestDTO teamRequestDTO, Long teamId) {
         if (!getTeamById(teamId).getIsActive()){ // if team is not active throw exception
             throw new TeamValidationException(Messages.TEAM_NOT_UPDATABLE);
@@ -50,6 +50,7 @@ public class TeamServiceImpl implements TeamService, Pagination {
     }
 
     @Override
+    @Transactional
     public TeamResponseDTO saveTeam(TeamRequestDTO teamRequestDTO) {
         if (isTeamNameValid(teamRequestDTO.getName())) {
             throw new EntityExistsException(String.format(Messages.TEAM_NAME_ALREADY_EXIST, teamRequestDTO.getName()));
@@ -60,6 +61,7 @@ public class TeamServiceImpl implements TeamService, Pagination {
         return savedTeam.toDTO();
     }
     @Override
+    @Transactional
     public void deleteTeamById(Long teamId) {
        Team team = getTeamById(teamId);
        team.setIsActive(false);
@@ -75,17 +77,16 @@ public class TeamServiceImpl implements TeamService, Pagination {
                 .collect(Collectors.toList()));
     }
 
-    @Transactional(readOnly = true)
+
     private Team getTeamById(Long teamId) {
         return teamRepository.findById(teamId)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format(Messages.TEAM_ID_NOT_FOUND, teamId)));
     }
-    @Transactional(readOnly = true)
+
     private boolean isTeamNameValid(String name) {
         return teamRepository.existsByName(name);
     }
 
-    @Transactional(readOnly = true)
     private boolean isTeamIdValid(Long id) {
         return teamRepository.existsById(id);
     }

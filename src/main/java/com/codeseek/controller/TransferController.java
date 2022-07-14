@@ -14,7 +14,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.net.URI;
 
 @Validated
 @RestController
@@ -34,10 +33,9 @@ public class TransferController {
 
     @ApiOperation(value = "This method is used to save new Transfer")
     @PostMapping
-    public ResponseEntity<URI> saveTransfer(@Valid @RequestBody TransferRequestDTO transferRequestDTO) {
+    public ResponseEntity<TransferResponseDTO> saveTransfer(@Valid @RequestBody TransferRequestDTO transferRequestDTO) {
         TransferResponseDTO createdTransferResponseDTO = transferService.saveTransfer(transferRequestDTO);
-        URI location = URI.create(String.format(Messages.CREATED_TRANSFER_URI, createdTransferResponseDTO.getId()));
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(location);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdTransferResponseDTO);
     }
 }

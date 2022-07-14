@@ -10,12 +10,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @NoArgsConstructor
@@ -35,7 +32,7 @@ public class PlayerRequestDTO {
     @NotNull(message = Messages.NOT_NULL_START_CAREER_DATE)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate startCareerDate;
-    @Enumerated(EnumType.STRING)
+    @NotNull(message = Messages.NOT_NULL_POSITION)
     private Position position;
 
 

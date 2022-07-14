@@ -34,11 +34,10 @@ public class TeamController {
 
     @ApiOperation(value = "This method is used to save new Team")
     @PostMapping
-    public ResponseEntity<URI> saveTeam(@Valid @RequestBody TeamRequestDTO teamRequestDTO) {
+    public ResponseEntity<TeamResponseDTO> saveTeam(@Valid @RequestBody TeamRequestDTO teamRequestDTO) {
         TeamResponseDTO createdTeamResponseDTO = teamService.saveTeam(teamRequestDTO);
-        URI location = URI.create(String.format(Messages.CREATED_TEAM_URI, createdTeamResponseDTO.getId()));
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(location);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdTeamResponseDTO);
     }
 
     @ApiOperation(value = "This method is used to update Team by ID")

@@ -1,7 +1,6 @@
 package com.codeseek.unit.controller;
 
 import com.codeseek.common.Messages;
-import com.codeseek.common.Pagination;
 import com.codeseek.controller.TransferController;
 import com.codeseek.controller.dto.request.TransferRequestDTO;
 import com.codeseek.controller.dto.response.TransferResponseDTO;
@@ -19,19 +18,18 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import javax.validation.ConstraintViolationException;
 import java.math.BigDecimal;
-import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -85,21 +83,18 @@ public class TransferControllerTests {
     public void givenValidTransfer_whenSaveTransfer_thenReturnURI_andStatus201() throws Exception {
         //given
         Mockito.when(transferService.saveTransfer(Mockito.any())).thenReturn(transferResponse);
-        URI location = URI.create(String.format(Messages.CREATED_TRANSFER_URI, transferRequest.getId()));
-
         //when
         mockMvc.perform(
                         post(Messages.TRANSFER_CONTROLLER_URI)
                                 .content(objectMapper.writeValueAsString(transferRequest))
                                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
-                .andExpect(content().json(objectMapper.writeValueAsString(location)));
+                .andExpect(content().json(objectMapper.writeValueAsString(transferResponse)));
     }
 
     @Test
     public void givenNotValidTransfer_whenSaveTransfer_thenThrowConstraintViolationException_andStatus400() throws Exception {
         //given
-
         transferRequest.setToTeam(null);
 
         //when

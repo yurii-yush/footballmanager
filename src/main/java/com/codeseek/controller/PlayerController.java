@@ -33,11 +33,10 @@ public class PlayerController {
 
     @ApiOperation(value = "This method is used to save new Player")
     @PostMapping
-    public ResponseEntity<URI> savePlayer(@Valid @RequestBody PlayerRequestDTO playerRequestDTO) {
+    public ResponseEntity<PlayerResponseDTO> savePlayer(@Valid @RequestBody PlayerRequestDTO playerRequestDTO) {
         PlayerResponseDTO createdPlayer = playerService.savePlayer(playerRequestDTO);
-        URI location = URI.create(String.format(Messages.CREATED_PLAYER_URI, createdPlayer.getId()));
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(location);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdPlayer);
     }
 
     @ApiOperation(value = "This method is used to update Player by ID")

@@ -32,10 +32,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
 public class TransferServiceImpl implements TransferService, Pagination {
 
-    public static final long TRANSFER_COEFFICIENT = 100_000;
+    public static final BigDecimal TRANSFER_COEFFICIENT = BigDecimal.valueOf(100_000);
     @Autowired
     private TransferRepository transferRepository;
 
@@ -56,6 +55,7 @@ public class TransferServiceImpl implements TransferService, Pagination {
     }
 
     @Override
+    @Transactional
     public TransferResponseDTO saveTransfer(TransferRequestDTO transferRequestDTO) {
         Transfer transfer = transferRequestToEntity(transferRequestDTO);
 
@@ -154,7 +154,8 @@ public class TransferServiceImpl implements TransferService, Pagination {
         int playerAge = Period.between(player.getBirthDate(), currentDate).getYears();
         Period period = Period.between(player.getStartCareerDate(), currentDate);
         int experienceMonths = (period.getYears()*12) + period.getMonths();
-        return BigDecimal.valueOf(experienceMonths * TRANSFER_COEFFICIENT / playerAge);
+
+        return TRANSFER_COEFFICIENT.multiply(new BigDecimal(experienceMonths)).divide(new BigDecimal(playerAge), 2, RoundingMode.DOWN);
     }
 
     private Page<TransferResponseDTO> getTransferDTOList(Page<Transfer> transfers) {

@@ -24,7 +24,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
 public class PlayerServiceImpl implements PlayerService, Pagination {
 
     @Autowired
@@ -41,6 +40,7 @@ public class PlayerServiceImpl implements PlayerService, Pagination {
     }
 
     @Override
+    @Transactional
     public PlayerResponseDTO savePlayer(PlayerRequestDTO playerRequestDTO) {
         PlayerValidator.validate(playerRequestDTO);
 
@@ -50,6 +50,7 @@ public class PlayerServiceImpl implements PlayerService, Pagination {
     }
 
     @Override
+    @Transactional
     public PlayerResponseDTO updatePlayer(PlayerRequestDTO playerRequestDTO, Long id) {
         if (!getPlayerById(id).getIsActive()) {
             throw new PlayerValidationException(Messages.PLAYER_NOT_UPDATABLE);
@@ -60,6 +61,7 @@ public class PlayerServiceImpl implements PlayerService, Pagination {
     }
 
     @Override
+    @Transactional
     public void deletePlayerById(Long id) {
        getPlayerById(id).setIsActive(false);
     }
@@ -71,7 +73,7 @@ public class PlayerServiceImpl implements PlayerService, Pagination {
     }
 
     @Transactional(readOnly = true)
-    private Player getPlayerById(Long playerId) {
+    public Player getPlayerById(Long playerId) {
         return playerRepository.findById(playerId)
                 .orElseThrow(() -> new ResourceNotFoundException(String.format(Messages.PLAYER_ID_NOT_FOUND, playerId)));
     }

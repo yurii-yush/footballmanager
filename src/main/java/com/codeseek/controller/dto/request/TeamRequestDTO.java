@@ -23,10 +23,10 @@ public class TeamRequestDTO {
     private String name;
     @CountryValidation
     private String countryCode;
-
+    @NotNull(message = Messages.NOT_NULL_BALANCE)
     @Min(value = 100_000, message = Messages.REQUIRED_BALANCE_FOR_CREATING_TEAM)
     private BigDecimal balance;
-
+    @NotNull(message = Messages.NOT_NULL_COMMISSION)
     @DecimalMin(value = "0.10", message = Messages.REQUIRED_MIN_TEAM_COMMISSION)
     @DecimalMax(value = "10.0", message = Messages.REQUIRED_MAX_TEAM_COMMISSION)
     private BigDecimal commission;
